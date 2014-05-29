@@ -67,6 +67,8 @@ public class MusicBrowserPhoneFragment extends Fragment implements
 
     private PreferenceUtils mPreferences;
 
+    private boolean mCollapsed;
+
     /**
      * Empty constructor as per the {@link Fragment} documentation
      */
@@ -156,6 +158,11 @@ public class MusicBrowserPhoneFragment extends Fragment implements
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+
+        if (mCollapsed) {
+            return;
+        }
+
         // Favorite action
         inflater.inflate(R.menu.favorite, menu);
         // Shuffle all

@@ -42,7 +42,7 @@
     <dimen name="item_normal_height">64.0dip</dimen>
 
     <!-- Bottom Action Bar -->
-    <dimen name="bottom_action_bar_height">48.0dip</dimen>
+    <dimen name="bottom_action_bar_height">60.0dip</dimen>
     <dimen name="bottom_action_bar_item_width">56.0dip</dimen>
     <dimen name="bottom_action_bar_item_padding_left">12.0dip</dimen>
     <dimen name="bottom_action_bar_item_padding_right">12.0dip</dimen>

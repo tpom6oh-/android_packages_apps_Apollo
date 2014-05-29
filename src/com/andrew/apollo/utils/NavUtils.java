@@ -21,8 +21,8 @@ import android.provider.MediaStore;
 
 import com.andrew.apollo.Config;
 import com.andrew.apollo.R;
-import com.andrew.apollo.model.Album;
 import com.andrew.apollo.ui.activities.AudioPlayerActivity;
+import com.andrew.apollo.ui.activities.BaseActivity;
 import com.andrew.apollo.ui.activities.HomeActivity;
 import com.andrew.apollo.ui.activities.ProfileActivity;
 import com.andrew.apollo.ui.activities.SearchActivity;
@@ -31,19 +31,21 @@ import com.devspark.appmsg.AppMsg;
 
 /**
  * Various navigation helpers.
- * 
+ *
  * @author Andrew Neal (andrewdneal@gmail.com)
  */
 public final class NavUtils {
 
     /**
      * Opens the profile of an artist.
-     * 
-     * @param context The {@link Activity} to use.
-     * @param artistName The name of the artist
+     *
+     * @param context
+     *         The {@link Activity} to use.
+     * @param artistName
+     *         The name of the artist
      */
     public static void openArtistProfile(final Activity context,
-            final String artistName) {
+                                         final String artistName) {
 
         // Create a new bundle to transfer the artist info
         final Bundle bundle = new Bundle();
@@ -59,14 +61,19 @@ public final class NavUtils {
 
     /**
      * Opens the profile of an album.
-     * 
-     * @param context The {@link Activity} to use.
-     * @param albumName The name of the album
-     * @param artistName The name of the album artist
-     * @param albumId The id of the album
+     *
+     * @param context
+     *         The {@link Activity} to use.
+     * @param albumName
+     *         The name of the album
+     * @param artistName
+     *         The name of the album artist
+     * @param albumId
+     *         The id of the album
      */
     public static void openAlbumProfile(final Activity context,
-            final String albumName, final String artistName, final long albumId) {
+                                        final String albumName, final String artistName,
+                                        final long albumId) {
 
         // Create a new bundle to transfer the album info
         final Bundle bundle = new Bundle();
@@ -84,24 +91,27 @@ public final class NavUtils {
 
     /**
      * Opens the sound effects panel or DSP manager in CM
-     * 
-     * @param context The {@link Activity} to use.
+     *
+     * @param context
+     *         The {@link Activity} to use.
      */
     public static void openEffectsPanel(final Activity context) {
         try {
-            final Intent effects = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
+            final Intent effects
+                    = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
             effects.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, MusicUtils.getAudioSessionId());
             context.startActivity(effects);
         } catch (final ActivityNotFoundException notFound) {
             AppMsg.makeText(context, context.getString(R.string.no_effects_for_you),
-                    AppMsg.STYLE_ALERT);
+                            AppMsg.STYLE_ALERT);
         }
     }
 
     /**
      * Opens to {@link SettingsActivity}.
-     * 
-     * @param activity The {@link Activity} to use.
+     *
+     * @param activity
+     *         The {@link Activity} to use.
      */
     public static void openSettings(final Activity activity) {
         final Intent intent = new Intent(activity, SettingsActivity.class);
@@ -110,11 +120,13 @@ public final class NavUtils {
 
     /**
      * Opens to {@link AudioPlayerActivity}.
-     * 
-     * @param activity The {@link Activity} to use.
+     *
+     * @param activity
+     *         The {@link Activity} to use.
      */
     public static void openAudioPlayer(final Activity activity) {
         final Intent intent = new Intent(activity, AudioPlayerActivity.class);
+        intent.putExtra(BaseActivity.OPEN_PLAYER, true);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -124,9 +136,11 @@ public final class NavUtils {
 
     /**
      * Opens to {@link SearchActivity}.
-     * 
-     * @param activity The {@link Activity} to use.
-     * @param query The search query.
+     *
+     * @param activity
+     *         The {@link Activity} to use.
+     * @param query
+     *         The search query.
      */
     public static void openSearch(final Activity activity, final String query) {
         final Bundle bundle = new Bundle();
@@ -138,8 +152,9 @@ public final class NavUtils {
 
     /**
      * Opens to {@link HomeActivity}.
-     * 
-     * @param activity The {@link Activity} to use.
+     *
+     * @param activity
+     *         The {@link Activity} to use.
      */
     public static void goHome(final Activity activity) {
         final Intent intent = new Intent(activity, HomeActivity.class);

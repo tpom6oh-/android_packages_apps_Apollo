@@ -38,12 +38,4 @@ public class HomeActivity extends BaseActivity {
                     .replace(R.id.activity_base_content, new MusicBrowserPhoneFragment()).commit();
         }
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int setContentView() {
-        return R.layout.activity_base;
-    }
 }

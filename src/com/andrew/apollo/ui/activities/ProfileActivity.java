@@ -27,6 +27,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.andrew.apollo.Config;
 import com.andrew.apollo.R;
@@ -249,8 +250,9 @@ public class ProfileActivity extends BaseActivity implements OnPageChangeListene
      * {@inheritDoc}
      */
     @Override
-    public int setContentView() {
-        return R.layout.activity_profile_base;
+    protected void addContent() {
+        getLayoutInflater().inflate(R.layout.activity_profile_base_content,
+                                    (ViewGroup) findViewById(R.id.activity_base_content));
     }
 
     /**

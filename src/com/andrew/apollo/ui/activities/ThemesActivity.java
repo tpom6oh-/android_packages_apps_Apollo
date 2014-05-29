@@ -80,12 +80,4 @@ public class ThemesActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int setContentView() {
-        return R.layout.activity_base;
-    }
 }

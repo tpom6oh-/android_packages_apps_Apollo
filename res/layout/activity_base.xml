@@ -14,17 +14,30 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:gravity="bottom"
+    android:id="@+id/sliding_up_layout"
+        >
 
     <com.andrew.apollo.widgets.theme.ThemeableFrameLayout
         android:id="@+id/activity_base_content"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1" />
+        android:layout_height="match_parent" />
 
-    <include layout="@layout/bottom_action_bar"/>
+    <RelativeLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent">
 
-</LinearLayout>
+        <fragment
+                android:name="com.andrew.apollo.ui.fragments.AudioPlayerFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/audio_player_fragment"/>
+
+        <include
+                layout="@layout/bottom_action_bar"/>
+
+    </RelativeLayout>
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

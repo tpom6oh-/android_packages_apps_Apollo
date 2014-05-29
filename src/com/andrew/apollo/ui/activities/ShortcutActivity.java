@@ -11,9 +11,6 @@
 
 package com.andrew.apollo.ui.activities;
 
-import static com.andrew.apollo.Config.MIME_TYPE;
-import static com.andrew.apollo.utils.MusicUtils.mService;
-
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -41,12 +38,15 @@ import com.andrew.apollo.utils.MusicUtils.ServiceToken;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.andrew.apollo.Config.MIME_TYPE;
+import static com.andrew.apollo.utils.MusicUtils.mService;
+
 /**
  * This class is opened when the user touches a Home screen shortcut or album
  * art in an app-wdget, and then carries out the proper action. It is also
  * responsible for processing voice queries and playing the spoken artist,
  * album, song, playlist, or genre.
- * 
+ *
  * @author Andrew Neal (andrewdneal@gmail.com)
  */
 public class ShortcutActivity extends FragmentActivity implements ServiceConnection {
@@ -133,55 +133,67 @@ public class ShortcutActivity extends FragmentActivity implements ServiceConnect
                         // Get the artist song list
                         mList = MusicUtils.getSongListForArtist(ShortcutActivity.this, getId());
                     } else
-                    // Second, check the album MIME type
-                    if (MediaStore.Audio.Albums.CONTENT_TYPE.equals(requestedMimeType)) {
+                        // Second, check the album MIME type
+                        if (MediaStore.Audio.Albums.CONTENT_TYPE.equals(requestedMimeType)) {
 
-                        // Shuffle the album track list
-                        mShouldShuffle = true;
+                            // Shuffle the album track list
+                            mShouldShuffle = true;
 
-                        // Get the album song list
-                        mList = MusicUtils.getSongListForAlbum(ShortcutActivity.this, getId());
-                    } else
-                    // Third, check the genre MIME type
-                    if (MediaStore.Audio.Genres.CONTENT_TYPE.equals(requestedMimeType)) {
+                            // Get the album song list
+                            mList = MusicUtils.getSongListForAlbum(ShortcutActivity.this, getId());
+                        } else
+                            // Third, check the genre MIME type
+                            if (MediaStore.Audio.Genres.CONTENT_TYPE.equals(requestedMimeType)) {
 
-                        // Shuffle the genre track list
-                        mShouldShuffle = true;
+                                // Shuffle the genre track list
+                                mShouldShuffle = true;
 
-                        // Get the genre song list
-                        mList = MusicUtils.getSongListForGenre(ShortcutActivity.this, getId());
-                    } else
-                    // Fourth, check the playlist MIME type
-                    if (MediaStore.Audio.Playlists.CONTENT_TYPE.equals(requestedMimeType)) {
+                                // Get the genre song list
+                                mList
+                                        = MusicUtils.getSongListForGenre(ShortcutActivity.this,
+                                                                         getId());
+                            } else
+                                // Fourth, check the playlist MIME type
+                                if (MediaStore.Audio.Playlists.CONTENT_TYPE.equals
+                                        (requestedMimeType)) {
 
-                        // Don't shuffle the playlist track list
-                        mShouldShuffle = false;
+                                    // Don't shuffle the playlist track list
+                                    mShouldShuffle = false;
 
-                        // Get the playlist song list
-                        mList = MusicUtils.getSongListForPlaylist(ShortcutActivity.this, getId());
-                    } else
-                    // Check the Favorites playlist
-                    if (getString(R.string.playlist_favorites).equals(requestedMimeType)) {
+                                    // Get the playlist song list
+                                    mList
+                                            = MusicUtils.getSongListForPlaylist(ShortcutActivity
+                                                                                        .this,
+                                                                                getId());
+                                } else
+                                    // Check the Favorites playlist
+                                    if (getString(R.string.playlist_favorites).equals
+                                            (requestedMimeType)) {
 
-                        // Don't shuffle the Favorites track list
-                        mShouldShuffle = false;
+                                        // Don't shuffle the Favorites track list
+                                        mShouldShuffle = false;
 
-                        // Get the Favorites song list
-                        mList = MusicUtils.getSongListForFavorites(ShortcutActivity.this);
-                    } else
-                    // Check for the Last added playlist
-                    if (getString(R.string.playlist_last_added).equals(requestedMimeType)) {
+                                        // Get the Favorites song list
+                                        mList
+                                                = MusicUtils.getSongListForFavorites
+                                                (ShortcutActivity.this);
+                                    } else
+                                        // Check for the Last added playlist
+                                        if (getString(R.string.playlist_last_added).equals
+                                                (requestedMimeType)) {
 
-                        // Don't shuffle the last added track list
-                        mShouldShuffle = false;
+                                            // Don't shuffle the last added track list
+                                            mShouldShuffle = false;
 
-                        // Get the Last added song list
-                        Cursor cursor = LastAddedLoader.makeLastAddedCursor(ShortcutActivity.this);
-                        if (cursor != null) {
-                            mList = MusicUtils.getSongListForCursor(cursor);
-                            cursor.close();
-                        }
-                    }
+                                            // Get the Last added song list
+                                            Cursor cursor
+                                                    = LastAddedLoader.makeLastAddedCursor
+                                                    (ShortcutActivity.this);
+                                            if (cursor != null) {
+                                                mList = MusicUtils.getSongListForCursor(cursor);
+                                                cursor.close();
+                                            }
+                                        }
                     // Finish up
                     allDone();
                 }
@@ -214,10 +226,10 @@ public class ShortcutActivity extends FragmentActivity implements ServiceConnect
 
     /**
      * Uses the query from a voice search to try and play a song, then album,
-     * then artist. If all of those fail, it checks for playlists and genres via
-     * a {@link #mPlaylistGenreQuery}.
+     * then artist. If all of those fail, it checks for playlists and genres.
      */
-    private final LoaderCallbacks<List<Song>> mSongAlbumArtistQuery = new LoaderCallbacks<List<Song>>() {
+    private final LoaderCallbacks<List<Song>> mSongAlbumArtistQuery
+            = new LoaderCallbacks<List<Song>>() {
 
         /**
          * {@inheritDoc}
@@ -268,18 +280,18 @@ public class ShortcutActivity extends FragmentActivity implements ServiceConnect
             final long id = mSong.get(0).mSongId;
             // First, try to play a song
             if (mList == null && song != null) {
-                mList = new long[] {
-                    id
+                mList = new long[]{
+                        id
                 };
             } else
-            // Second, try to play an album
-            if (mList == null && album != null) {
-                mList = MusicUtils.getSongListForAlbum(ShortcutActivity.this, id);
-            } else
-            // Third, try to play an artist
-            if (mList == null && artist != null) {
-                mList = MusicUtils.getSongListForArtist(ShortcutActivity.this, id);
-            }
+                // Second, try to play an album
+                if (mList == null && album != null) {
+                    mList = MusicUtils.getSongListForAlbum(ShortcutActivity.this, id);
+                } else
+                    // Third, try to play an artist
+                    if (mList == null && artist != null) {
+                        mList = MusicUtils.getSongListForArtist(ShortcutActivity.this, id);
+                    }
             // Finish up
             allDone();
         }
@@ -296,7 +308,7 @@ public class ShortcutActivity extends FragmentActivity implements ServiceConnect
 
     /**
      * Used to find the Id supplied
-     * 
+     *
      * @return The Id passed into the activity
      */
     private long getId() {
@@ -334,7 +346,8 @@ public class ShortcutActivity extends FragmentActivity implements ServiceConnect
 
         // Open the now playing screen
         if (shouldOpenAudioPlayer) {
-            final Intent intent = new Intent(this, AudioPlayerActivity.class);
+            final Intent intent = new Intent(this, HomeActivity.class);
+            intent.putExtra(BaseActivity.OPEN_PLAYER, true);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }

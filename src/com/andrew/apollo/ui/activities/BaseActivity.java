@@ -11,8 +11,6 @@
 
 package com.andrew.apollo.ui.activities;
 
-import static com.andrew.apollo.utils.MusicUtils.mService;
-
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.BroadcastReceiver;
@@ -22,15 +20,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
@@ -39,6 +37,7 @@ import com.andrew.apollo.IApolloService;
 import com.andrew.apollo.MusicPlaybackService;
 import com.andrew.apollo.MusicStateListener;
 import com.andrew.apollo.R;
+import com.andrew.apollo.ui.fragments.AudioPlayerFragment;
 import com.andrew.apollo.utils.ApolloUtils;
 import com.andrew.apollo.utils.Lists;
 import com.andrew.apollo.utils.MusicUtils;
@@ -48,16 +47,19 @@ import com.andrew.apollo.utils.ThemeUtils;
 import com.andrew.apollo.widgets.PlayPauseButton;
 import com.andrew.apollo.widgets.RepeatButton;
 import com.andrew.apollo.widgets.ShuffleButton;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+import static com.andrew.apollo.utils.MusicUtils.mService;
+
 /**
  * A base {@link FragmentActivity} used to update the bottom bar and
  * bind to Apollo's service.
- * <p>
+ * <p/>
  * {@link HomeActivity} extends from this skeleton.
- * 
+ *
  * @author Andrew Neal (andrewdneal@gmail.com)
  */
 public abstract class BaseActivity extends FragmentActivity implements ServiceConnection {
@@ -103,6 +105,16 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
     private ImageView mAlbumArt;
 
     /**
+     * Bottom Action Bar
+     */
+    private View mBottonActionBar;
+
+    /**
+     * Player fragment inside the sliding up panel
+     */
+    private AudioPlayerFragment mAudioPlayerFragment;
+
+    /**
      * Broadcast receiver
      */
     private PlaybackStatus mPlaybackStatus;
@@ -116,6 +128,19 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
      * Theme resources
      */
     protected ThemeUtils mResources;
+
+    /**
+     * Keeps track of the sliding panel opening
+     */
+    private boolean mIsAudioPlayerOpened;
+
+    private SlidingUpPanelLayout slidingUpLayout;
+
+    public static String OPEN_PLAYER = "open player";
+
+    public ThemeUtils getThemeResources() {
+        return mResources;
+    }
 
     /**
      * {@inheritDoc}
@@ -146,11 +171,50 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
         mResources.themeActionBar(getActionBar(), getString(R.string.app_name));
 
         // Set the layout
-        setContentView(setContentView());
-
+        setContentView(R.layout.activity_base);
+        addContent();
         // Initialze the bottom action bar
+
+        slidingUpLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_up_layout);
+        mAudioPlayerFragment = (AudioPlayerFragment) getSupportFragmentManager().
+                findFragmentById(R.id.audio_player_fragment);
         initBottomActionBar();
+        if (slidingUpLayout != null) {
+            slidingUpLayout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+                @Override
+                public void onPanelSlide(View panel, float slideOffset) {
+
+                }
+
+                @Override
+                public void onPanelCollapsed(View panel) {
+                    mIsAudioPlayerOpened = false;
+                    mBottonActionBar.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onPanelExpanded(View panel) {
+                    mIsAudioPlayerOpened = true;
+                    mBottonActionBar.setVisibility(View.GONE);
+                    if (MusicUtils.getCurrentAudioId() == -1) {
+                        MusicUtils.shuffleAll(BaseActivity.this);
+                    }
+                    mAudioPlayerFragment.updateNowPlayingInfo();
+                    mAudioPlayerFragment.refreshQueue();
+                }
+
+                @Override
+                public void onPanelAnchored(View panel) {
+
+                }
+            });
+        }
     }
+
+    /**
+     * Adds a view to {@link com.andrew.apollo.R.id#activity_base_content}
+     */
+    protected void addContent() {}
 
     /**
      * {@inheritDoc}
@@ -158,6 +222,8 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
     @Override
     public void onServiceConnected(final ComponentName name, final IBinder service) {
         mService = IApolloService.Stub.asInterface(service);
+        // Check whether we were asked to start any playback
+        startPlayback();
         // Set the playback drawables
         updatePlaybackControls();
         // Current info
@@ -186,9 +252,10 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
         // Theme the search icon
         mResources.setSearchIcon(menu);
 
-        final SearchView searchView = (SearchView)menu.findItem(R.id.menu_search).getActionView();
+        final SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
         // Add voice search
-        final SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
+        final SearchManager searchManager
+                = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchableInfo searchableInfo = searchManager.getSearchableInfo(getComponentName());
         searchView.setSearchableInfo(searchableInfo);
         // Perform the search
@@ -256,6 +323,7 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
         // Update a list, probably the playlist fragment's
         filter.addAction(MusicPlaybackService.REFRESH);
         registerReceiver(mPlaybackStatus, filter);
+        // Refresh the current time
         MusicUtils.notifyForegroundStateChanged(this, true);
     }
 
@@ -282,6 +350,7 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
 
         // Unregister the receiver
         try {
+            //TODO move this to open - close player
             unregisterReceiver(mPlaybackStatus);
         } catch (final Throwable e) {
             //$FALL-THROUGH$
@@ -296,33 +365,140 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
      */
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        mIsBackPressed = true;
+        if (mIsAudioPlayerOpened) {
+            closeAudioPlayer();
+        } else {
+            super.onBackPressed();
+            mIsBackPressed = true;
+        }
+    }
+
+    private void closeAudioPlayer() {
+        slidingUpLayout.collapsePane();
+    }
+
+    private void openAudioPlayer() {
+        slidingUpLayout.expandPane();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onNewIntent(Intent intent) {
+        setIntent(intent);
+        checkPlayer();
+    }
+
+    private void checkPlayer() {
+        Intent intent = getIntent();
+        if (intent.getBooleanExtra(OPEN_PLAYER, false)) {
+            openAudioPlayer();
+            startPlayback();
+        }
+    }
+
+    /**
+     * Checks whether the passed intent contains a playback request,
+     * and starts playback if that's the case
+     */
+    private void startPlayback() {
+        Intent intent = getIntent();
+
+        if (intent == null || mService == null) {
+            return;
+        }
+
+        Uri uri = intent.getData();
+        String mimeType = intent.getType();
+        boolean handled = false;
+
+        if (uri != null && uri.toString().length() > 0) {
+            MusicUtils.playFile(this, uri);
+            handled = true;
+        } else if (MediaStore.Audio.Playlists.CONTENT_TYPE.equals(mimeType)) {
+            long id = parseIdFromIntent(intent, "playlistId", "playlist", -1);
+            if (id >= 0) {
+                MusicUtils.playPlaylist(this, id);
+                handled = true;
+            }
+        } else if (MediaStore.Audio.Albums.CONTENT_TYPE.equals(mimeType)) {
+            long id = parseIdFromIntent(intent, "albumId", "album", -1);
+            if (id >= 0) {
+                int position = intent.getIntExtra("position", 0);
+                MusicUtils.playAlbum(this, id, position);
+                handled = true;
+            }
+        } else if (MediaStore.Audio.Artists.CONTENT_TYPE.equals(mimeType)) {
+            long id = parseIdFromIntent(intent, "artistId", "artist", -1);
+            if (id >= 0) {
+                int position = intent.getIntExtra("position", 0);
+                MusicUtils.playArtist(this, id, position);
+                handled = true;
+            }
+        }
+
+        if (handled) {
+            // Make sure to process intent only once
+            setIntent(new Intent());
+            // Refresh the queue
+            mAudioPlayerFragment.refreshQueue();
+        }
+    }
+
+    private long parseIdFromIntent(Intent intent, String longKey,
+                                   String stringKey, long defaultId) {
+        long id = intent.getLongExtra(longKey, -1);
+        if (id < 0) {
+            String idString = intent.getStringExtra(stringKey);
+            if (idString != null) {
+                try {
+                    id = Long.parseLong(idString);
+                } catch (NumberFormatException e) {
+                    // ignore
+                }
+            }
+        }
+        return id;
     }
 
     /**
      * Initializes the items in the bottom action bar.
      */
     private void initBottomActionBar() {
+        // Bottom action bar
+        mBottonActionBar = findViewById(R.id.bottom_action_bar_parent);
+        if (slidingUpLayout != null) {
+            slidingUpLayout.setDragView(mBottonActionBar);
+            slidingUpLayout.setEnableDragViewTouchEvents(true);
+        }
         // Play and pause button
-        mPlayPauseButton = (PlayPauseButton)findViewById(R.id.action_button_play);
+        mPlayPauseButton = (PlayPauseButton) findViewById(R.id.action_button_play);
         // Shuffle button
-        mShuffleButton = (ShuffleButton)findViewById(R.id.action_button_shuffle);
+        mShuffleButton = (ShuffleButton) findViewById(R.id.action_button_shuffle);
         // Repeat button
-        mRepeatButton = (RepeatButton)findViewById(R.id.action_button_repeat);
+        mRepeatButton = (RepeatButton) findViewById(R.id.action_button_repeat);
         // Track name
-        mTrackName = (TextView)findViewById(R.id.bottom_action_bar_line_one);
+        mTrackName = (TextView) findViewById(R.id.bottom_action_bar_line_one);
         // Artist name
-        mArtistName = (TextView)findViewById(R.id.bottom_action_bar_line_two);
+        mArtistName = (TextView) findViewById(R.id.bottom_action_bar_line_two);
         // Album art
-        mAlbumArt = (ImageView)findViewById(R.id.bottom_action_bar_album_art);
+        mAlbumArt = (ImageView) findViewById(R.id.bottom_action_bar_album_art);
         // Open to the currently playing album profile
         mAlbumArt.setOnClickListener(mOpenCurrentAlbumProfile);
         // Bottom action bar
-        final LinearLayout bottomActionBar = (LinearLayout)findViewById(R.id.bottom_action_bar);
+        //    final LinearLayout bottomActionBar = (LinearLayout)findViewById(R.id
+        // .bottom_action_bar);
         // Display the now playing screen or shuffle if this isn't anything
         // playing
-        bottomActionBar.setOnClickListener(mOpenNowPlaying);
+        //    bottomActionBar.setOnClickListener(mOpenNowPlaying);
+        View mInfo = findViewById(R.id.bottom_action_bar_info_container);
+        mInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingUpLayout.expandPane();
+            }
+        });
     }
 
     /**
@@ -361,7 +537,8 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
         public void onClick(final View v) {
             if (MusicUtils.getCurrentAudioId() != -1) {
                 NavUtils.openAlbumProfile(BaseActivity.this, MusicUtils.getAlbumName(),
-                        MusicUtils.getArtistName(), MusicUtils.getCurrentAlbumId());
+                                          MusicUtils.getArtistName(),
+                                          MusicUtils.getCurrentAlbumId());
             } else {
                 MusicUtils.shuffleAll(BaseActivity.this);
             }
@@ -424,7 +601,7 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
                 // Set the play and pause image
                 mReference.get().mPlayPauseButton.updateState();
             } else if (action.equals(MusicPlaybackService.REPEATMODE_CHANGED)
-                    || action.equals(MusicPlaybackService.SHUFFLEMODE_CHANGED)) {
+                       || action.equals(MusicPlaybackService.SHUFFLEMODE_CHANGED)) {
                 // Set the repeat image
                 mReference.get().mRepeatButton.updateRepeatState();
                 // Set the shuffle image
@@ -441,16 +618,12 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
     }
 
     /**
-     * @param status The {@link MusicStateListener} to use
+     * @param status
+     *         The {@link MusicStateListener} to use
      */
     public void setMusicStateListenerListener(final MusicStateListener status) {
         if (status != null) {
             mMusicStateListener.add(status);
         }
     }
-
-    /**
-     * @return The resource ID to be inflated.
-     */
-    public abstract int setContentView();
 }
