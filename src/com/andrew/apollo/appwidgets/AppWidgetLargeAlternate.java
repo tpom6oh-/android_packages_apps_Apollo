@@ -71,8 +71,7 @@ public class AppWidgetLargeAlternate extends AppWidgetBase {
         pushUpdate(context, appWidgetIds, appWidgetViews);
     }
 
-    private void pushUpdate(final Context context, final int[] appWidgetIds,
-                            final RemoteViews views) {
+    private void pushUpdate(final Context context, final int[] appWidgetIds, final RemoteViews views) {
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         if (appWidgetIds != null) {
             appWidgetManager.updateAppWidget(appWidgetIds, views);
@@ -88,7 +87,7 @@ public class AppWidgetLargeAlternate extends AppWidgetBase {
     private boolean hasInstances(final Context context) {
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         final int[] mAppWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context,
-                                                                                       getClass()));
+                getClass()));
         return mAppWidgetIds.length > 0;
     }
 
@@ -99,9 +98,9 @@ public class AppWidgetLargeAlternate extends AppWidgetBase {
     public void notifyChange(final MusicPlaybackService service, final String what) {
         if (hasInstances(service)) {
             if (MusicPlaybackService.META_CHANGED.equals(what)
-                || MusicPlaybackService.PLAYSTATE_CHANGED.equals(what)
-                || MusicPlaybackService.REPEATMODE_CHANGED.equals(what)
-                || MusicPlaybackService.SHUFFLEMODE_CHANGED.equals(what)) {
+                    || MusicPlaybackService.PLAYSTATE_CHANGED.equals(what)
+                    || MusicPlaybackService.REPEATMODE_CHANGED.equals(what)
+                    || MusicPlaybackService.SHUFFLEMODE_CHANGED.equals(what)) {
                 performUpdate(service, null);
             }
         }
@@ -129,17 +128,17 @@ public class AppWidgetLargeAlternate extends AppWidgetBase {
         final boolean isPlaying = service.isPlaying();
         if (isPlaying) {
             appWidgetView.setImageViewResource(R.id.app_widget_large_alternate_play,
-                                               R.drawable.btn_playback_pause);
+                    R.drawable.btn_playback_pause);
             if (ApolloUtils.hasJellyBean()) {
                 appWidgetView.setContentDescription(R.id.app_widget_large_alternate_play,
-                                                    service.getString(R.string.accessibility_pause));
+                        service.getString(R.string.accessibility_pause));
             }
         } else {
             appWidgetView.setImageViewResource(R.id.app_widget_large_alternate_play,
-                                               R.drawable.btn_playback_play);
+                    R.drawable.btn_playback_play);
             if (ApolloUtils.hasJellyBean()) {
                 appWidgetView.setContentDescription(R.id.app_widget_large_alternate_play,
-                                                    service.getString(R.string.accessibility_play));
+                        service.getString(R.string.accessibility_play));
             }
         }
 
@@ -147,15 +146,15 @@ public class AppWidgetLargeAlternate extends AppWidgetBase {
         switch (service.getRepeatMode()) {
             case MusicPlaybackService.REPEAT_ALL:
                 appWidgetView.setImageViewResource(R.id.app_widget_large_alternate_repeat,
-                                                   R.drawable.btn_playback_repeat_all);
+                        R.drawable.btn_playback_repeat_all);
                 break;
             case MusicPlaybackService.REPEAT_CURRENT:
                 appWidgetView.setImageViewResource(R.id.app_widget_large_alternate_repeat,
-                                                   R.drawable.btn_playback_repeat_one);
+                        R.drawable.btn_playback_repeat_one);
                 break;
             default:
                 appWidgetView.setImageViewResource(R.id.app_widget_large_alternate_repeat,
-                                                   R.drawable.btn_playback_repeat);
+                        R.drawable.btn_playback_repeat);
                 break;
         }
 
@@ -163,15 +162,15 @@ public class AppWidgetLargeAlternate extends AppWidgetBase {
         switch (service.getShuffleMode()) {
             case MusicPlaybackService.SHUFFLE_NONE:
                 appWidgetView.setImageViewResource(R.id.app_widget_large_alternate_shuffle,
-                                                   R.drawable.btn_playback_shuffle);
+                        R.drawable.btn_playback_shuffle);
                 break;
             case MusicPlaybackService.SHUFFLE_AUTO:
                 appWidgetView.setImageViewResource(R.id.app_widget_large_alternate_shuffle,
-                                                   R.drawable.btn_playback_shuffle_all);
+                        R.drawable.btn_playback_shuffle_all);
                 break;
             default:
                 appWidgetView.setImageViewResource(R.id.app_widget_large_alternate_shuffle,
-                                                   R.drawable.btn_playback_shuffle_all);
+                        R.drawable.btn_playback_shuffle_all);
                 break;
         }
 
@@ -192,7 +191,7 @@ public class AppWidgetLargeAlternate extends AppWidgetBase {
      *         opened, otherwise closed.
      */
     private void linkButtons(final Context context, final RemoteViews views,
-                             final boolean playerActive) {
+            final boolean playerActive) {
         Intent action;
         PendingIntent pendingIntent;
 
@@ -210,18 +209,15 @@ public class AppWidgetLargeAlternate extends AppWidgetBase {
         views.setOnClickPendingIntent(R.id.app_widget_large_alternate_image, pendingIntent);
 
         // Shuffle modes
-        pendingIntent
-                = buildPendingIntent(context, MusicPlaybackService.SHUFFLE_ACTION, serviceName);
+        pendingIntent = buildPendingIntent(context, MusicPlaybackService.SHUFFLE_ACTION, serviceName);
         views.setOnClickPendingIntent(R.id.app_widget_large_alternate_shuffle, pendingIntent);
 
         // Previous track
-        pendingIntent
-                = buildPendingIntent(context, MusicPlaybackService.PREVIOUS_ACTION, serviceName);
+        pendingIntent = buildPendingIntent(context, MusicPlaybackService.PREVIOUS_ACTION, serviceName);
         views.setOnClickPendingIntent(R.id.app_widget_large_alternate_previous, pendingIntent);
 
         // Play and pause
-        pendingIntent
-                = buildPendingIntent(context, MusicPlaybackService.TOGGLEPAUSE_ACTION, serviceName);
+        pendingIntent = buildPendingIntent(context, MusicPlaybackService.TOGGLEPAUSE_ACTION, serviceName);
         views.setOnClickPendingIntent(R.id.app_widget_large_alternate_play, pendingIntent);
 
         // Next track
@@ -229,8 +225,7 @@ public class AppWidgetLargeAlternate extends AppWidgetBase {
         views.setOnClickPendingIntent(R.id.app_widget_large_alternate_next, pendingIntent);
 
         // Repeat modes
-        pendingIntent
-                = buildPendingIntent(context, MusicPlaybackService.REPEAT_ACTION, serviceName);
+        pendingIntent = buildPendingIntent(context, MusicPlaybackService.REPEAT_ACTION, serviceName);
         views.setOnClickPendingIntent(R.id.app_widget_large_alternate_repeat, pendingIntent);
     }
 

@@ -12,16 +12,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c74a82bb-a540-43a6-9d3f-2b2c05457315" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/activity_profile_base.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/AudioPlayerActivity.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetLarge.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetLarge.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetLargeAlternate.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetLargeAlternate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetSmall.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetSmall.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/AudioPlayerFragment.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/AudioPlayerFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/HomeActivity.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/HomeActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/utils/NavUtils.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/utils/NavUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/RecentWidgetProvider.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/RecentWidgetProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ShortcutActivity.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ShortcutActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java" afterPath="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_base.xml" afterPath="$PROJECT_DIR$/res/layout/activity_base.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apollo.iml" afterPath="$PROJECT_DIR$/apollo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/bottom_action_bar.xml" afterPath="$PROJECT_DIR$/res/layout/bottom_action_bar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/dimens.xml" afterPath="$PROJECT_DIR$/res/values/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sliding-up-panel/sliding-up-panel.iml" afterPath="$PROJECT_DIR$/sliding-up-panel/sliding-up-panel.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="apollo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +45,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_any>
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
         <option name="NOTIFY_UNCAUGHT" value="true" />
@@ -75,6 +81,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -84,68 +91,86 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BaseActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java">
+      <file leaf-file-name="ShortcutActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ShortcutActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="215" column="15" selection-start="6368" selection-end="6368" vertical-scroll-proportion="1.8494624" vertical-offset="2838" max-vertical-offset="11430">
-              <folding>
-                <element signature="e#0#19774#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#3912#3913#0" expanded="true" />
-                <element signature="e#3945#3946#0" expanded="true" />
-                <element signature="e#4742#4770#0" expanded="true" />
-                <element signature="e#15165#15330#0" expanded="true" />
-                <element signature="e#15319#15320#0" expanded="true" />
-                <element signature="e#16251#16893#0" expanded="true" />
-                <element signature="e#16886#16887#0" expanded="true" />
-                <element signature="e#17005#17371#0" expanded="true" />
-                <element signature="e#17364#17365#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="254" column="66" selection-start="8699" selection-end="8699" vertical-scroll-proportion="-62.0" vertical-offset="1998" max-vertical-offset="11682">
-              <folding>
-                <element signature="e#9179#9212#0" expanded="true" />
-                <element signature="e#9251#9283#0" expanded="true" />
-                <element signature="e#22993#23031#0" expanded="true" />
-                <element signature="e#23197#23236#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/HomeActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="76" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0" vertical-offset="9" max-vertical-offset="594">
+            <state line="59" column="7" selection-start="2430" selection-end="2430" vertical-scroll-proportion="0.0" vertical-offset="181" max-vertical-offset="5634">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MusicBrowserPhoneFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java">
+      <file leaf-file-name="MusicUtils.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/utils/MusicUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="11" selection-start="2670" selection-end="2670" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5976">
+            <state line="656" column="46" selection-start="21505" selection-end="21505" vertical-scroll-proportion="0.0" vertical-offset="10854" max-vertical-offset="23796">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThemesActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java">
+      <file leaf-file-name="NavUtils.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/utils/NavUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="37" selection-start="2025" selection-end="2025" vertical-scroll-proportion="0.0" vertical-offset="554" max-vertical-offset="1602">
-              <folding>
-                <element signature="e#0#2485#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#1302#1350#0" expanded="true" />
-              </folding>
+            <state line="133" column="26" selection-start="5104" selection-end="5104" vertical-scroll-proportion="0.0" vertical-offset="1749" max-vertical-offset="2682">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppWidgetLarge.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetLarge.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="170" column="41" selection-start="6868" selection-end="6868" vertical-scroll-proportion="0.0" vertical-offset="2503" max-vertical-offset="3078">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppWidgetLargeAlternate.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetLargeAlternate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="203" column="41" selection-start="8707" selection-end="8707" vertical-scroll-proportion="0.0" vertical-offset="3133" max-vertical-offset="3888">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppWidgetSmall.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetSmall.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="174" column="41" selection-start="7063" selection-end="7063" vertical-scroll-proportion="0.0" vertical-offset="2575" max-vertical-offset="3168">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecentWidgetProvider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/RecentWidgetProvider.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="263" column="41" selection-start="11130" selection-end="11130" vertical-scroll-proportion="0.0" vertical-offset="4015" max-vertical-offset="4590">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bottom_action_bar.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res/layout/bottom_action_bar.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="47" column="64" selection-start="1934" selection-end="1934" vertical-scroll-proportion="0.45238096" vertical-offset="694" max-vertical-offset="1872">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueueFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/QueueFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="403" column="53" selection-start="13344" selection-end="13344" vertical-scroll-proportion="0.0" vertical-offset="6321" max-vertical-offset="6696">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -163,17 +188,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java" />
         <option value="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java" />
         <option value="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetLarge.java" />
+        <option value="$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ShortcutActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/andrew/apollo/utils/NavUtils.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="206" />
-    <option name="y" value="18" />
-    <option name="width" value="1521" />
-    <option name="height" value="1044" />
+    <option name="x" value="-10" />
+    <option name="y" value="16" />
+    <option name="width" value="1386" />
+    <option name="height" value="762" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -201,6 +230,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -259,9 +289,64 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apollo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apollo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apollo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apollo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apollo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apollo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -276,6 +361,17 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="HT266W407488" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="tester" />
+    <property name="FullScreen" value="false" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="options.lastSelected" value="preferences.sourceCode.Java" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
   <component name="RunManager" selected="Android Application.Unnamed">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
@@ -312,6 +408,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -337,19 +446,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -435,6 +531,11 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
@@ -461,35 +562,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="206" y="18" width="1521" height="1044" extended-state="0" />
+    <frame x="-10" y="16" width="1386" height="762" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967785" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32968238" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290469" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3280507" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968238" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968238" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24948595" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18882175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968238" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -513,40 +614,221 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Downloads/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="16" selection-start="4664" selection-end="4664" vertical-scroll-proportion="0.33216783" vertical-offset="2006" max-vertical-offset="8010">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="37" selection-start="2025" selection-end="2025" vertical-scroll-proportion="0.0" vertical-offset="446" max-vertical-offset="1602">
+        <state line="214" column="74" selection-start="6360" selection-end="6360" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11430">
           <folding>
-            <element signature="e#0#2485#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#1302#1350#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="11" selection-start="2670" selection-end="2670" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5976">
+        <state line="38" column="0" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="792">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="254" column="66" selection-start="8699" selection-end="8699" vertical-scroll-proportion="-62.0" vertical-offset="1998" max-vertical-offset="11682">
+        <state line="254" column="66" selection-start="8699" selection-end="8699" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12582">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="76" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="11" selection-start="2670" selection-end="2670" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="6534">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="5" selection-start="2025" selection-end="2025" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="1602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="214" column="74" selection-start="6360" selection-end="6360" vertical-scroll-proportion="0.0" vertical-offset="3852" max-vertical-offset="11430">
           <folding>
-            <element signature="e#9179#9212#0" expanded="true" />
-            <element signature="e#9251#9283#0" expanded="true" />
-            <element signature="e#22993#23031#0" expanded="true" />
-            <element signature="e#23197#23236#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="792">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="254" column="66" selection-start="8699" selection-end="8699" vertical-scroll-proportion="0.0" vertical-offset="4572" max-vertical-offset="12582">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="76" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="11" selection-start="2670" selection-end="2670" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="6534">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="5" selection-start="2025" selection-end="2025" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="1602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="187" column="90" selection-start="5432" selection-end="5432" vertical-scroll-proportion="0.0" vertical-offset="3366" max-vertical-offset="11394">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="254" column="66" selection-start="8699" selection-end="8699" vertical-scroll-proportion="0.0" vertical-offset="4572" max-vertical-offset="12582">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="76" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="11" selection-start="2670" selection-end="2670" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="6534">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="37" selection-start="2025" selection-end="2025" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="1602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="187" column="90" selection-start="5432" selection-end="5432" vertical-scroll-proportion="0.0" vertical-offset="3366" max-vertical-offset="11394">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="254" column="66" selection-start="8699" selection-end="8699" vertical-scroll-proportion="0.0" vertical-offset="4572" max-vertical-offset="12582">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="76" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="11" selection-start="2670" selection-end="2670" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="6534">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="37" selection-start="2025" selection-end="2025" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="1602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="187" column="90" selection-start="5432" selection-end="5432" vertical-scroll-proportion="0.0" vertical-offset="2838" max-vertical-offset="11430">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="254" column="66" selection-start="8699" selection-end="8699" vertical-scroll-proportion="0.0" vertical-offset="4572" max-vertical-offset="12582">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="76" selection-start="1459" selection-end="1459" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="11" selection-start="2670" selection-end="2670" vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="6534">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="37" selection-start="2025" selection-end="2025" vertical-scroll-proportion="0.0" vertical-offset="554" max-vertical-offset="1602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="16" selection-start="4664" selection-end="4664" vertical-scroll-proportion="0.33216783" vertical-offset="2006" max-vertical-offset="8010" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/phone/MusicBrowserPhoneFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="11" selection-start="2780" selection-end="2780" vertical-scroll-proportion="0.0" vertical-offset="1386" max-vertical-offset="6588">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="254" column="66" selection-start="8699" selection-end="8699" vertical-scroll-proportion="0.0" vertical-offset="4572" max-vertical-offset="12582">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -557,25 +839,195 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/btn_playback_repeat_one.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ThemesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="5" selection-start="2025" selection-end="2025" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="1602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="71" selection-start="367" selection-end="367" vertical-scroll-proportion="-12.44" vertical-offset="211" max-vertical-offset="792">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/AudioPlayerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="158" column="32" selection-start="4185" selection-end="4185" vertical-scroll-proportion="0.0" vertical-offset="2035" max-vertical-offset="11610">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/utils/MusicUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="656" column="46" selection-start="21505" selection-end="21505" vertical-scroll-proportion="0.0" vertical-offset="10854" max-vertical-offset="23796">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/fragments/QueueFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="403" column="53" selection-start="13344" selection-end="13344" vertical-scroll-proportion="0.0" vertical-offset="6321" max-vertical-offset="6696">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetLarge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="170" column="41" selection-start="6868" selection-end="6868" vertical-scroll-proportion="0.0" vertical-offset="2503" max-vertical-offset="3078">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetLargeAlternate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="203" column="41" selection-start="8707" selection-end="8707" vertical-scroll-proportion="0.0" vertical-offset="3133" max-vertical-offset="3888">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/AppWidgetSmall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="41" selection-start="7063" selection-end="7063" vertical-scroll-proportion="0.0" vertical-offset="2575" max-vertical-offset="3168">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/appwidgets/RecentWidgetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="263" column="41" selection-start="11130" selection-end="11130" vertical-scroll-proportion="0.0" vertical-offset="4015" max-vertical-offset="4590">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="15" selection-start="6368" selection-end="6368" vertical-scroll-proportion="1.8494624" vertical-offset="2838" max-vertical-offset="11430">
+        <state line="445" column="35" selection-start="13132" selection-end="13132" vertical-scroll-proportion="0.33333334" vertical-offset="7687" max-vertical-offset="11682">
           <folding>
-            <element signature="e#0#19774#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3912#3913#0" expanded="true" />
-            <element signature="e#3945#3946#0" expanded="true" />
-            <element signature="e#4742#4770#0" expanded="true" />
-            <element signature="e#15165#15330#0" expanded="true" />
-            <element signature="e#15319#15320#0" expanded="true" />
-            <element signature="e#16251#16893#0" expanded="true" />
-            <element signature="e#16886#16887#0" expanded="true" />
-            <element signature="e#17005#17371#0" expanded="true" />
-            <element signature="e#17364#17365#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/ui/activities/ShortcutActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="7" selection-start="2430" selection-end="2430" vertical-scroll-proportion="0.0" vertical-offset="181" max-vertical-offset="5634">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/andrew/apollo/utils/NavUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="26" selection-start="5104" selection-end="5104" vertical-scroll-proportion="0.0" vertical-offset="1749" max-vertical-offset="2682">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/bottom_action_bar.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="64" selection-start="1934" selection-end="1934" vertical-scroll-proportion="0.45238096" vertical-offset="694" max-vertical-offset="1872">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Android</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.6</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>apollo</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>Android API 19 Platform</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>libs</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
 

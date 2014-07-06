@@ -67,6 +67,9 @@ public class MusicBrowserPhoneFragment extends Fragment implements
 
     private PreferenceUtils mPreferences;
 
+    /**
+     * Tracks {@link com.andrew.apollo.ui.activities.BaseActivity#mSlidingUpLayout} expansion
+     */
     private boolean mCollapsed;
 
     /**

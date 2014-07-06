@@ -38,4 +38,10 @@ public class HomeActivity extends BaseActivity {
                     .replace(R.id.activity_base_content, new MusicBrowserPhoneFragment()).commit();
         }
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void addContent() {}
 }

@@ -80,4 +80,10 @@ public class ThemesActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void addContent() {}
 }

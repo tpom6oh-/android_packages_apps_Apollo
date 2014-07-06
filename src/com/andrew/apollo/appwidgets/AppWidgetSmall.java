@@ -52,7 +52,7 @@ public class AppWidgetSmall extends AppWidgetBase {
      */
     @Override
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager,
-                         final int[] appWidgetIds) {
+            final int[] appWidgetIds) {
         defaultAppWidget(context, appWidgetIds);
         final Intent updateIntent = new Intent(MusicPlaybackService.SERVICECMD);
         updateIntent.putExtra(MusicPlaybackService.CMDNAME, AppWidgetSmall.CMDAPPWIDGETUPDATE);
@@ -67,14 +67,13 @@ public class AppWidgetSmall extends AppWidgetBase {
      */
     private void defaultAppWidget(final Context context, final int[] appWidgetIds) {
         final RemoteViews appWidgetViews = new RemoteViews(context.getPackageName(),
-                                                           R.layout.app_widget_small);
+                R.layout.app_widget_small);
         appWidgetViews.setViewVisibility(R.id.app_widget_small_info_container, View.INVISIBLE);
         linkButtons(context, appWidgetViews, false);
         pushUpdate(context, appWidgetIds, appWidgetViews);
     }
 
-    private void pushUpdate(final Context context, final int[] appWidgetIds,
-                            final RemoteViews views) {
+    private void pushUpdate(final Context context, final int[] appWidgetIds, final RemoteViews views) {
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         if (appWidgetIds != null) {
             appWidgetManager.updateAppWidget(appWidgetIds, views);
@@ -90,7 +89,7 @@ public class AppWidgetSmall extends AppWidgetBase {
     private boolean hasInstances(final Context context) {
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         final int[] mAppWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context,
-                                                                                       getClass()));
+                getClass()));
         return mAppWidgetIds.length > 0;
     }
 
@@ -101,7 +100,7 @@ public class AppWidgetSmall extends AppWidgetBase {
     public void notifyChange(final MusicPlaybackService service, final String what) {
         if (hasInstances(service)) {
             if (MusicPlaybackService.META_CHANGED.equals(what)
-                || MusicPlaybackService.PLAYSTATE_CHANGED.equals(what)) {
+                    || MusicPlaybackService.PLAYSTATE_CHANGED.equals(what)) {
                 performUpdate(service, null);
             }
         }
@@ -112,7 +111,7 @@ public class AppWidgetSmall extends AppWidgetBase {
      */
     public void performUpdate(final MusicPlaybackService service, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(),
-                                                          R.layout.app_widget_small);
+                R.layout.app_widget_small);
 
         final CharSequence trackName = service.getTrackName();
         final CharSequence artistName = service.getArtistName();
@@ -132,17 +131,17 @@ public class AppWidgetSmall extends AppWidgetBase {
         final boolean isPlaying = service.isPlaying();
         if (isPlaying) {
             appWidgetView.setImageViewResource(R.id.app_widget_small_play,
-                                               R.drawable.btn_playback_pause);
+                    R.drawable.btn_playback_pause);
             if (ApolloUtils.hasJellyBean()) {
                 appWidgetView.setContentDescription(R.id.app_widget_small_play,
-                                                    service.getString(R.string.accessibility_pause));
+                        service.getString(R.string.accessibility_pause));
             }
         } else {
             appWidgetView.setImageViewResource(R.id.app_widget_small_play,
-                                               R.drawable.btn_playback_play);
+                    R.drawable.btn_playback_play);
             if (ApolloUtils.hasJellyBean()) {
                 appWidgetView.setContentDescription(R.id.app_widget_small_play,
-                                                    service.getString(R.string.accessibility_play));
+                        service.getString(R.string.accessibility_play));
             }
         }
 
@@ -163,7 +162,7 @@ public class AppWidgetSmall extends AppWidgetBase {
      *         opened, otherwise closed.
      */
     private void linkButtons(final Context context, final RemoteViews views,
-                             final boolean playerActive) {
+            final boolean playerActive) {
         Intent action;
         PendingIntent pendingIntent;
 
@@ -180,13 +179,11 @@ public class AppWidgetSmall extends AppWidgetBase {
         views.setOnClickPendingIntent(R.id.app_widget_small_image, pendingIntent);
 
         // Previous track
-        pendingIntent
-                = buildPendingIntent(context, MusicPlaybackService.PREVIOUS_ACTION, serviceName);
+        pendingIntent = buildPendingIntent(context, MusicPlaybackService.PREVIOUS_ACTION, serviceName);
         views.setOnClickPendingIntent(R.id.app_widget_small_previous, pendingIntent);
 
         // Play and pause
-        pendingIntent
-                = buildPendingIntent(context, MusicPlaybackService.TOGGLEPAUSE_ACTION, serviceName);
+        pendingIntent = buildPendingIntent(context, MusicPlaybackService.TOGGLEPAUSE_ACTION, serviceName);
         views.setOnClickPendingIntent(R.id.app_widget_small_play, pendingIntent);
 
         // Next track

@@ -37,6 +37,7 @@ import com.andrew.apollo.IApolloService;
 import com.andrew.apollo.MusicPlaybackService;
 import com.andrew.apollo.MusicStateListener;
 import com.andrew.apollo.R;
+import com.andrew.apollo.menu.DeleteDialog;
 import com.andrew.apollo.ui.fragments.AudioPlayerFragment;
 import com.andrew.apollo.utils.ApolloUtils;
 import com.andrew.apollo.utils.Lists;
@@ -107,7 +108,7 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
     /**
      * Bottom Action Bar
      */
-    private View mBottonActionBar;
+    private View mBottomActionBar;
 
     /**
      * Player fragment inside the sliding up panel
@@ -130,14 +131,23 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
     protected ThemeUtils mResources;
 
     /**
-     * Keeps track of the sliding panel opening
+     * Sliding panel open status
      */
     private boolean mIsAudioPlayerOpened;
 
-    private SlidingUpPanelLayout slidingUpLayout;
+    /**
+     * Container of the main activity's content and sliding up layout content
+     */
+    private SlidingUpPanelLayout mSlidingUpLayout;
 
-    public static String OPEN_PLAYER = "open player";
+    /**
+     * Open player label
+     */
+    public static final String OPEN_PLAYER = "open player";
 
+    /**
+     * @return current {@link com.andrew.apollo.utils.ThemeUtils}
+     */
     public ThemeUtils getThemeResources() {
         return mResources;
     }
@@ -173,48 +183,50 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
         // Set the layout
         setContentView(R.layout.activity_base);
         addContent();
-        // Initialze the bottom action bar
 
-        slidingUpLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_up_layout);
+        // Initialize the sliding up layout
+        mSlidingUpLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_up_layout);
         mAudioPlayerFragment = (AudioPlayerFragment) getSupportFragmentManager().
                 findFragmentById(R.id.audio_player_fragment);
+
+        // Initialze the bottom action bar
         initBottomActionBar();
-        if (slidingUpLayout != null) {
-            slidingUpLayout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
-                @Override
-                public void onPanelSlide(View panel, float slideOffset) {
 
+        // Set the slide listener
+        mSlidingUpLayout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+
+            }
+
+            @Override
+            public void onPanelCollapsed(View panel) {
+                mIsAudioPlayerOpened = false;
+                mBottomActionBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPanelExpanded(View panel) {
+                mIsAudioPlayerOpened = true;
+                mBottomActionBar.setVisibility(View.GONE);
+                if (MusicUtils.getCurrentAudioId() == -1) {
+                    MusicUtils.shuffleAll(BaseActivity.this);
                 }
+                mAudioPlayerFragment.updateNowPlayingInfo();
+                mAudioPlayerFragment.refreshQueue();
+            }
 
-                @Override
-                public void onPanelCollapsed(View panel) {
-                    mIsAudioPlayerOpened = false;
-                    mBottonActionBar.setVisibility(View.VISIBLE);
-                }
+            @Override
+            public void onPanelAnchored(View panel) {
 
-                @Override
-                public void onPanelExpanded(View panel) {
-                    mIsAudioPlayerOpened = true;
-                    mBottonActionBar.setVisibility(View.GONE);
-                    if (MusicUtils.getCurrentAudioId() == -1) {
-                        MusicUtils.shuffleAll(BaseActivity.this);
-                    }
-                    mAudioPlayerFragment.updateNowPlayingInfo();
-                    mAudioPlayerFragment.refreshQueue();
-                }
-
-                @Override
-                public void onPanelAnchored(View panel) {
-
-                }
-            });
-        }
+            }
+        });
     }
 
     /**
      * Adds a view to {@link com.andrew.apollo.R.id#activity_base_content}
      */
-    protected void addContent() {}
+    protected abstract void addContent();
 
     /**
      * {@inheritDoc}
@@ -252,10 +264,9 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
         // Theme the search icon
         mResources.setSearchIcon(menu);
 
-        final SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        final SearchView searchView = (SearchView)menu.findItem(R.id.menu_search).getActionView();
         // Add voice search
-        final SearchManager searchManager
-                = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
         final SearchableInfo searchableInfo = searchManager.getSearchableInfo(getComponentName());
         searchView.setSearchableInfo(searchableInfo);
         // Perform the search
@@ -287,7 +298,39 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
                 // Settings
                 NavUtils.openSettings(this);
                 return true;
-
+            case android.R.id.home:
+                // Go back to the home activity
+                mSlidingUpLayout.collapsePane();
+                return true;
+            case R.id.menu_shuffle:
+                // Shuffle all the songs
+                MusicUtils.shuffleAll(this);
+                // Refresh the queue
+                mAudioPlayerFragment.refreshQueue();
+                return true;
+            case R.id.menu_favorite:
+                // Toggle the current track as a favorite and update the menu
+                // item
+                MusicUtils.toggleFavorite();
+                invalidateOptionsMenu();
+                return true;
+            case R.id.menu_audio_player_ringtone:
+                // Set the current track as a ringtone
+                MusicUtils.setRingtone(this, MusicUtils.getCurrentAudioId());
+                return true;
+            case R.id.menu_audio_player_share:
+                // Share the current meta data
+                mAudioPlayerFragment.shareCurrentTrack();
+                return true;
+            case R.id.menu_audio_player_equalizer:
+                // Sound effects
+                NavUtils.openEffectsPanel(this);
+                return true;
+            case R.id.menu_audio_player_delete:
+                // Delete current song
+                DeleteDialog.newInstance(MusicUtils.getTrackName(),
+                                         new long[]{MusicUtils.getCurrentAudioId()}, null).show(getSupportFragmentManager(), "DeleteDialog");
+                return true;
             default:
                 break;
         }
@@ -350,7 +393,6 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
 
         // Unregister the receiver
         try {
-            //TODO move this to open - close player
             unregisterReceiver(mPlaybackStatus);
         } catch (final Throwable e) {
             //$FALL-THROUGH$
@@ -369,16 +411,22 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
             closeAudioPlayer();
         } else {
             super.onBackPressed();
-            mIsBackPressed = true;
         }
+        mIsBackPressed = true;
     }
 
+    /**
+     * Collapses {@link #mSlidingUpLayout}
+     */
     private void closeAudioPlayer() {
-        slidingUpLayout.collapsePane();
+        mSlidingUpLayout.collapsePane();
     }
 
+    /**
+     * Expands {@link #mSlidingUpLayout}
+     */
     private void openAudioPlayer() {
-        slidingUpLayout.expandPane();
+        mSlidingUpLayout.expandPane();
     }
 
     /**
@@ -390,6 +438,9 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
         checkPlayer();
     }
 
+    /**
+     * Decides to expand {@link #mSlidingUpLayout} based on extras of incoming intent
+     */
     private void checkPlayer() {
         Intent intent = getIntent();
         if (intent.getBooleanExtra(OPEN_PLAYER, false)) {
@@ -467,11 +518,10 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
      */
     private void initBottomActionBar() {
         // Bottom action bar
-        mBottonActionBar = findViewById(R.id.bottom_action_bar_parent);
-        if (slidingUpLayout != null) {
-            slidingUpLayout.setDragView(mBottonActionBar);
-            slidingUpLayout.setEnableDragViewTouchEvents(true);
-        }
+        mBottomActionBar = findViewById(R.id.bottom_action_bar_parent);
+        //Sliding layout
+        mSlidingUpLayout.setDragView(mBottomActionBar);
+        mSlidingUpLayout.setEnableDragViewTouchEvents(true);
         // Play and pause button
         mPlayPauseButton = (PlayPauseButton) findViewById(R.id.action_button_play);
         // Shuffle button
@@ -486,19 +536,11 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
         mAlbumArt = (ImageView) findViewById(R.id.bottom_action_bar_album_art);
         // Open to the currently playing album profile
         mAlbumArt.setOnClickListener(mOpenCurrentAlbumProfile);
-        // Bottom action bar
-        //    final LinearLayout bottomActionBar = (LinearLayout)findViewById(R.id
-        // .bottom_action_bar);
         // Display the now playing screen or shuffle if this isn't anything
         // playing
         //    bottomActionBar.setOnClickListener(mOpenNowPlaying);
         View mInfo = findViewById(R.id.bottom_action_bar_info_container);
-        mInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                slidingUpLayout.expandPane();
-            }
-        });
+        mInfo.setOnClickListener(mOpenNowPlaying);
     }
 
     /**
@@ -537,8 +579,7 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
         public void onClick(final View v) {
             if (MusicUtils.getCurrentAudioId() != -1) {
                 NavUtils.openAlbumProfile(BaseActivity.this, MusicUtils.getAlbumName(),
-                                          MusicUtils.getArtistName(),
-                                          MusicUtils.getCurrentAlbumId());
+                        MusicUtils.getArtistName(), MusicUtils.getCurrentAlbumId());
             } else {
                 MusicUtils.shuffleAll(BaseActivity.this);
             }
@@ -558,9 +599,8 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
          */
         @Override
         public void onClick(final View v) {
-            if (MusicUtils.getCurrentAudioId() != -1) {
-                NavUtils.openAudioPlayer(BaseActivity.this);
-            } else {
+            mSlidingUpLayout.expandPane();
+            if (MusicUtils.getCurrentAudioId() == -1) {
                 MusicUtils.shuffleAll(BaseActivity.this);
             }
         }
@@ -618,8 +658,7 @@ public abstract class BaseActivity extends FragmentActivity implements ServiceCo
     }
 
     /**
-     * @param status
-     *         The {@link MusicStateListener} to use
+     * @param status The {@link MusicStateListener} to use
      */
     public void setMusicStateListenerListener(final MusicStateListener status) {
         if (status != null) {

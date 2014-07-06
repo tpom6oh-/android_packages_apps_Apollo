@@ -52,8 +52,7 @@ public class RecentWidgetProvider extends AppWidgetBase {
 
     public static final String CLICK_ACTION = "com.andrew.apollo.recents.appwidget.action.CLICK";
 
-    public static final String REFRESH_ACTION
-            = "com.andrew.apollo.recents.appwidget.action.REFRESH";
+    public static final String REFRESH_ACTION = "com.andrew.apollo.recents.appwidget.action.REFRESH";
 
     private static Handler sWorkerQueue;
 
@@ -67,8 +66,7 @@ public class RecentWidgetProvider extends AppWidgetBase {
     public RecentWidgetProvider() {
         // Start the worker thread
         final HandlerThread workerThread = new HandlerThread("RecentWidgetProviderWorker",
-                                                             android.os.Process
-                                                                     .THREAD_PRIORITY_BACKGROUND);
+                android.os.Process.THREAD_PRIORITY_BACKGROUND);
         workerThread.start();
         sWorkerQueue = new Handler(workerThread.getLooper());
     }
@@ -88,7 +86,7 @@ public class RecentWidgetProvider extends AppWidgetBase {
      */
     @Override
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager,
-                         final int[] appWidgetIds) {
+            final int[] appWidgetIds) {
         for (final int appWidgetId : appWidgetIds) {
             // Create the remote views
             mViews = new RemoteViews(context.getPackageName(), R.layout.app_widget_recents);
@@ -113,9 +111,7 @@ public class RecentWidgetProvider extends AppWidgetBase {
             onClickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             onClickIntent.setData(Uri.parse(onClickIntent.toUri(Intent.URI_INTENT_SCHEME)));
             final PendingIntent onClickPendingIntent = PendingIntent.getBroadcast(context, 0,
-                                                                                  onClickIntent,
-                                                                                  PendingIntent
-                                                                                          .FLAG_UPDATE_CURRENT);
+                    onClickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             mViews.setPendingIntentTemplate(R.id.app_widget_recents_list, onClickPendingIntent);
 
             // Update the widget
@@ -173,7 +169,7 @@ public class RecentWidgetProvider extends AppWidgetBase {
     @SuppressWarnings("deprecation")
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void compatSetRemoteAdapter(final RemoteViews rv, final int appWidgetId,
-                                        final Intent intent) {
+            final Intent intent) {
         rv.setRemoteAdapter(R.id.app_widget_recents_list, intent);
     }
 
@@ -188,8 +184,7 @@ public class RecentWidgetProvider extends AppWidgetBase {
         return appWidgetIds.length > 0;
     }
 
-    private void pushUpdate(final Context context, final int[] appWidgetIds,
-                            final RemoteViews views) {
+    private void pushUpdate(final Context context, final int[] appWidgetIds, final RemoteViews views) {
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         if (appWidgetIds != null) {
             appWidgetManager.updateAppWidget(appWidgetIds, views);
@@ -234,8 +229,7 @@ public class RecentWidgetProvider extends AppWidgetBase {
         /* Set correct drawable for pause state */
         final boolean isPlaying = service.isPlaying();
         if (isPlaying) {
-            mViews.setImageViewResource(R.id.app_widget_recents_play,
-                                        R.drawable.btn_playback_pause);
+            mViews.setImageViewResource(R.id.app_widget_recents_play, R.drawable.btn_playback_pause);
         } else {
             mViews.setImageViewResource(R.id.app_widget_recents_play, R.drawable.btn_playback_play);
         }
@@ -257,7 +251,7 @@ public class RecentWidgetProvider extends AppWidgetBase {
      *         opened, otherwise closed.
      */
     private void linkButtons(final Context context, final RemoteViews views,
-                             final boolean playerActive) {
+            final boolean playerActive) {
         Intent action;
         PendingIntent pendingIntent;
 
@@ -273,13 +267,11 @@ public class RecentWidgetProvider extends AppWidgetBase {
         views.setOnClickPendingIntent(R.id.app_widget_recents_action_bar, pendingIntent);
 
         // Previous track
-        pendingIntent
-                = buildPendingIntent(context, MusicPlaybackService.PREVIOUS_ACTION, serviceName);
+        pendingIntent = buildPendingIntent(context, MusicPlaybackService.PREVIOUS_ACTION, serviceName);
         views.setOnClickPendingIntent(R.id.app_widget_recents_previous, pendingIntent);
 
         // Play and pause
-        pendingIntent
-                = buildPendingIntent(context, MusicPlaybackService.TOGGLEPAUSE_ACTION, serviceName);
+        pendingIntent = buildPendingIntent(context, MusicPlaybackService.TOGGLEPAUSE_ACTION, serviceName);
         views.setOnClickPendingIntent(R.id.app_widget_recents_play, pendingIntent);
 
         // Next track

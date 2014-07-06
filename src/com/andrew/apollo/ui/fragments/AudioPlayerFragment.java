@@ -1,9 +1,6 @@
 package com.andrew.apollo.ui.fragments;
 
 import android.animation.ObjectAnimator;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.audiofx.AudioEffect;
@@ -23,7 +20,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -123,6 +119,9 @@ public class AudioPlayerFragment extends Fragment implements DeleteDialog.Delete
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,6 +138,9 @@ public class AudioPlayerFragment extends Fragment implements DeleteDialog.Delete
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -151,6 +153,9 @@ public class AudioPlayerFragment extends Fragment implements DeleteDialog.Delete
         return v;
     }
 
+    /**
+     * @return current {@link com.andrew.apollo.utils.ThemeUtils}
+     */
     private ThemeUtils getThemeResources() {
         return ((BaseActivity)getActivity()).getThemeResources();
     }
@@ -301,6 +306,9 @@ public class AudioPlayerFragment extends Fragment implements DeleteDialog.Delete
         queueNextRefresh(1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onDelete(long[] ids) {
         refreshQueue();
@@ -309,6 +317,9 @@ public class AudioPlayerFragment extends Fragment implements DeleteDialog.Delete
         }
     }
 
+    /**
+     * Called to restart the loader callbacks
+     */
     public void refreshQueue() {
         ((QueueFragment)mPagerAdapter.getFragment(0)).refreshQueue();
     }
@@ -412,7 +423,9 @@ public class AudioPlayerFragment extends Fragment implements DeleteDialog.Delete
         mCurrentTime.setText(MusicUtils.makeTimeString(getActivity(), pos / 1000));
     }
 
-    /* Used to update the current time string */
+    /**
+     *  Used to update the current time string
+     */
     private long refreshCurrentTime() {
         if (mService == null) {
             return 500;
@@ -502,9 +515,9 @@ public class AudioPlayerFragment extends Fragment implements DeleteDialog.Delete
     }
 
     /**
-     * /** Used to shared what the user is currently listening to
+     * Used to shared what the user is currently listening to
      */
-    private void shareCurrentTrack() {
+    public void shareCurrentTrack() {
         if (MusicUtils.getTrackName() == null || MusicUtils.getArtistName() == null) {
             return;
         }
@@ -662,93 +675,11 @@ public class AudioPlayerFragment extends Fragment implements DeleteDialog.Delete
         refreshQueue();
     }
 
-    //TODO move to {@class HomeActivity}
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Go back to the home activity
-                NavUtils.goHome(getActivity());
-                return true;
-            case R.id.menu_shuffle:
-                // Shuffle all the songs
-                MusicUtils.shuffleAll(getActivity());
-                // Refresh the queue
-                refreshQueue();
-                return true;
-            case R.id.menu_favorite:
-                // Toggle the current track as a favorite and update the menu
-                // item
-                MusicUtils.toggleFavorite();
-                invalidateOptionsMenu();
-                return true;
-            case R.id.menu_audio_player_ringtone:
-                // Set the current track as a ringtone
-                MusicUtils.setRingtone(getActivity(), MusicUtils.getCurrentAudioId());
-                return true;
-            case R.id.menu_audio_player_share:
-                // Share the current meta data
-                shareCurrentTrack();
-                return true;
-            case R.id.menu_audio_player_equalizer:
-                // Sound effects
-                NavUtils.openEffectsPanel(getActivity());
-                return true;
-            case R.id.menu_settings:
-                // Settings
-                NavUtils.openSettings(getActivity());
-                return true;
-            case R.id.menu_audio_player_delete:
-                // Delete current song
-                DeleteDialog.newInstance(MusicUtils.getTrackName(), new long[] {
-                        MusicUtils.getCurrentAudioId()
-                }, null).show(getActivity().getSupportFragmentManager(), "DeleteDialog");
-                return true;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
-        // Search view
-        getActivity().getMenuInflater().inflate(R.menu.search, menu);
-        // Theme the search icon
-        getThemeResources().setSearchIcon(menu);
-
-        final SearchView searchView = (SearchView)menu.findItem(R.id.menu_search).getActionView();
-        // Add voice search
-        final SearchManager searchManager = (SearchManager)getActivity().getSystemService(Context
-                                                                                                  .SEARCH_SERVICE);
-        final SearchableInfo searchableInfo = searchManager.getSearchableInfo(getActivity()
-                                                                                      .getComponentName
-                                                                                              ());
-        searchView.setSearchableInfo(searchableInfo);
-        // Perform the search
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(final String query) {
-                // Open the search activity
-                NavUtils.openSearch(getActivity(), query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(final String newText) {
-                // Nothing to do
-                return false;
-            }
-        });
-
         // Favorite action
         inflater.inflate(R.menu.favorite, menu);
         // Shuffle all

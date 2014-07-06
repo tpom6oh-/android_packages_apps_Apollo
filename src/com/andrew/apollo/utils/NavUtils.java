@@ -21,7 +21,6 @@ import android.provider.MediaStore;
 
 import com.andrew.apollo.Config;
 import com.andrew.apollo.R;
-import com.andrew.apollo.ui.activities.AudioPlayerActivity;
 import com.andrew.apollo.ui.activities.BaseActivity;
 import com.andrew.apollo.ui.activities.HomeActivity;
 import com.andrew.apollo.ui.activities.ProfileActivity;
@@ -119,13 +118,14 @@ public final class NavUtils {
     }
 
     /**
-     * Opens to {@link AudioPlayerActivity}.
+     * Opens to {@link com.andrew.apollo.ui.activities.HomeActivity} with
+     * {@link com.andrew.apollo.ui.activities.HomeActivity#mAudioPlayerFragment} opened.
      *
      * @param activity
      *         The {@link Activity} to use.
      */
     public static void openAudioPlayer(final Activity activity) {
-        final Intent intent = new Intent(activity, AudioPlayerActivity.class);
+        final Intent intent = new Intent(activity, HomeActivity.class);
         intent.putExtra(BaseActivity.OPEN_PLAYER, true);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
